@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,tmp;
+    do {
+       cin>>n;
+       if(n==tmp) continue;
+       tmp=n;
+       cout<<n<<" ";
+    } while (n>=0);
+}

@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    double a,b,c;
+    cin>>a>>b>>c; 
+    double delta=b*b-4*a*c;
+    if(delta==0) {
+        cout<<setprecision(2)<<fixed<<-b/(2*a)<<endl;
+    }
+    else if(delta>0) {
+        cout<<setprecision(2)<<fixed<<(-b-sqrt(delta))/(2*a)<<endl;
+        cout<<setprecision(2)<<fixed<<(-b+sqrt(delta))/(2*a)<<endl;
+    }
+    else {
+        cout<<setprecision(2)<<fixed<<-b/(2*a)<<" "<<-sqrt(-delta)/(2*a)<<endl;
+        cout<<setprecision(2)<<fixed<<-b/(2*a)<<" "<<sqrt(-delta)/(2*a)<<endl;
+    }
+}

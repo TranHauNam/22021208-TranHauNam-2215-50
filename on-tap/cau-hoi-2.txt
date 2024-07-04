@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+int main() {
+    double a1,b1,c1,a2,b2,c2;
+    cin>>a1>>b1>>c1>>a2>>b2>>c2;
+    if(a2==0&&a1==0&&c2/b2!=c1/b1) {
+        cout<<"Vo nghiem"<<endl;
+    }
+    else if(b2==0&&b1==0&&c2/a2!=c1/a1) {
+        cout<<"Vo nghiem"<<endl;
+    }
+    else {
+        if (a1/a2==b1/b2&&b1/b2==c1/c2) {
+        cout<<"Vo so nghiem"<<endl;
+        return 0;
+    }
+    else if(a1/a2==b1/b2&&b1/b2!=c1/c2){
+        cout<<"Vo nghiem"<<endl;
+        return 0;
+    }
+    else {
+        double tmp=a2/a1;
+        a1*=tmp;
+        b1*=tmp;
+        c1*=tmp;
+        double y=(c1-c2)/(b1-b2);
+        double x=(c1-b1*y)/a1;
+        cout<<"x = "<<x<<", y = "<<y<<endl;
+        }
+    }
+    return 0;
+}
