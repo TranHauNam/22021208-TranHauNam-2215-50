@@ -14,8 +14,8 @@ void Graphics::initSDL() {
         logErrorAndExit("SDL_Init", SDL_GetError());
 
     window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-        //full screen
-        //window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    //full screen
+    //window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP);
     if (window == nullptr) logErrorAndExit("CreateWindow", SDL_GetError());
 
     if (!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG))
@@ -76,6 +76,10 @@ void Graphics::renderTexture(SDL_Texture *texture, int x, int y)
     SDL_RenderCopy(renderer, texture, NULL, &dest);
 }
 
+void Graphics::renderTextureResizeImage(SDL_Texture *texture, SDL_Rect *destRect) {
+    SDL_RenderCopy(renderer, texture, nullptr, destRect);
+}
+
 void Graphics::blitRect(SDL_Texture *texture, SDL_Rect *src, int x, int y)
 {
     SDL_Rect dest;
@@ -96,6 +100,10 @@ void Graphics::quit()
     cellX = nullptr;
     SDL_DestroyTexture(cellO);
     cellO = nullptr;
+    SDL_DestroyTexture(win);
+    win = nullptr;
+    SDL_DestroyTexture(lose);
+    lose = nullptr;
 
     IMG_Quit();
 
@@ -105,22 +113,20 @@ void Graphics::quit()
 }
 
 void Graphics::render(Tictactoe& game) {
-    //renderTexture(cellEmpty, 10, 10);
-    //renderTexture(cellX, 110, 10);
-    //renderTexture(cellO, 210, 10);
-
-    renderTexture(background, 0, 0);
-
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    prepareScene(background);
+    SDL_Rect destRect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+    //renderTextureResizeImage(background, &destRect);
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
             int x = BOARD_X + j * CELL_SIZE;
             int y = BOARD_Y + i * CELL_SIZE;
+            SDL_Rect cellRect = {x, y, CELL_SIZE, CELL_SIZE};
             switch (game.board[i][j]) {
-                case EMPTY_CELL: renderTexture(cellEmpty, x, y);
+                case EMPTY_CELL: renderTextureResizeImage(cellEmpty, &cellRect);
                 break;
-                case X_CELL: renderTexture(cellX, x, y);
+                case X_CELL: renderTextureResizeImage(cellX, &cellRect);
                 break;
-                case O_CELL: renderTexture(cellO, x, y);
+                case O_CELL: renderTextureResizeImage(cellO, &cellRect);
                 break;
             };
 
@@ -128,10 +134,12 @@ void Graphics::render(Tictactoe& game) {
     }
 
     if (game.checkWin(game.board)) {
-        renderTexture(win, 0, 0);
-    } else {
-        renderTexture(lose, 0, 0);
+        SDL_RenderClear(renderer);
+        renderTextureResizeImage(win, &destRect);
     }
+    //else {
+    //    renderTextureResizeImage(lose, &destRect);
+    //}
 
     presentScene();
 }

@@ -1,7 +1,7 @@
 #ifndef _LOGIC__H
 #define _LOGIC__H
 
-#define BOARD_SIZE 3
+#define BOARD_SIZE 15
 #define EMPTY_CELL ' '
 #define X_CELL 'x'
 #define O_CELL 'o'
