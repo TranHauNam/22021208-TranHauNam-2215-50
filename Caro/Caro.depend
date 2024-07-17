@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1721217918 source:c:\users\admin\onedrive\documents\ltnc\mouse_event\graphics.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+
+1721217876 c:\users\admin\onedrive\documents\ltnc\mouse_event\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"logic.h"
+
+1721185007 c:\users\admin\onedrive\documents\ltnc\mouse_event\defs.h
+
+1721184964 source:c:\users\admin\onedrive\documents\ltnc\mouse_event\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1721217876 source:c:\users\admin\onedrive\documents\ltnc\mouse_event\logic.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"logic.h"
+
+1721217287 c:\users\admin\onedrive\documents\ltnc\mouse_event\logic.h
+
+1721217918 source:c:\users\admin\onedrive\documents\ltnc\caro\graphics.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+
+1721217876 c:\users\admin\onedrive\documents\ltnc\caro\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"logic.h"
+
+1721185007 c:\users\admin\onedrive\documents\ltnc\caro\defs.h
+
+1721217287 c:\users\admin\onedrive\documents\ltnc\caro\logic.h
+
+1721217876 source:c:\users\admin\onedrive\documents\ltnc\caro\logic.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"logic.h"
+
+1721184964 source:c:\users\admin\onedrive\documents\ltnc\caro\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
