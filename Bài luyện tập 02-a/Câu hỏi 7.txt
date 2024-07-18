@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int minA=INT_MAX;
+    int minB=INT_MAX;
+    while(n--){
+        int a,b;
+        cin>>a>>b;
+        minA=min(minA,a);
+        minB=min(minB,b);
+    }
+    cout<<minA*minB;
+}

@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main () {
+    int n;
+    cin>>n;
+    int a[n];
+    map<int,int> mp;
+    for(int i=0;i<n;i++) {
+        cin>>a[i];
+        mp[a[i]]++;
+    }
+    map<int,int>::iterator it1=mp.begin();
+    int tmpKey=(*it1).first;
+    int cntKey=(*it1).second;
+    int tmpCountKey=(*it1).second;
+    for(pair<int,int> it:mp) {
+        if(it.first!=tmpKey) {
+            if(it.first-tmpKey<=1) {
+                cntKey=max(cntKey,it.second+tmpCountKey);
+                tmpKey=it.first;
+                tmpCountKey=it.second;
+            } else {
+                cntKey=max(it.second,cntKey);
+                tmpKey=it.first;
+                tmpCountKey=it.second;
+            }
+        }
+    }
+    cout<<cntKey;
+}
