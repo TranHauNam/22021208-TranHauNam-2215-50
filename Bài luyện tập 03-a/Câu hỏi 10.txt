@@ -1,0 +1,42 @@
+bool tangDan(int* firstArr, int lenArr1) {
+    for(int i=0;i<lenArr1-1;i++) {
+        if(firstArr[i]>firstArr[i+1]) return false;
+    }
+    return true;
+}
+int* merge(int* firstArr, int lenArr1, int* secondArr, int lenArr2) {
+    int* a=new int[lenArr1+lenArr2];
+    int i=0,j=0,idx=0;
+    if(tangDan(firstArr,lenArr1)) {
+        while (i<lenArr1&&j<lenArr2) {
+        if(firstArr[i]<=secondArr[j]) {
+            a[idx++]=firstArr[i++];
+        }
+        else {
+            a[idx++]=secondArr[j++];
+        }
+        }
+        while (i<lenArr1) {
+            a[idx++]=firstArr[i++];
+        }
+        while (j<lenArr2) {
+            a[idx++]=secondArr[j++];
+        }
+    } else {
+        while (i<lenArr1&&j<lenArr2) {
+        if(firstArr[i]>=secondArr[j]) {
+            a[idx++]=firstArr[i++];
+        }
+        else {
+            a[idx++]=secondArr[j++];
+        }
+    }
+        while (i<lenArr1) {
+            a[idx++]=firstArr[i++];
+        }
+        while (j<lenArr2) {
+            a[idx++]=secondArr[j++];
+        }
+    }
+    return a;
+}

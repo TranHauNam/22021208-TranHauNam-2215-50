@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void genBinary(int n, string s) {
+    int size = s.length();
+    if(n==size) {
+        cout<<s<<endl;
+        return;
+    }
+    genBinary(n, s+"0");
+    genBinary(n, s+"1");
+}
+
+int main(){
+    int n;
+    cin>>n;
+    genBinary(n,"");
+}
