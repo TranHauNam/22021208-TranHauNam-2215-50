@@ -30,6 +30,9 @@ int main(int argc, char *argv[])
     Graphics graphics;
     graphics.init();
 
+    Mix_Music *gMusic = graphics.loadMusic("assets\\game_music.mp3");
+    graphics.play(gMusic);
+
     Tictactoe game;
     game.init();
     graphics.render(game);
@@ -51,6 +54,8 @@ int main(int argc, char *argv[])
         }
         //SDL_Delay(100);
     }
+
+    if (gMusic != nullptr) Mix_FreeMusic( gMusic );
 
     graphics.quit();
     return 0;

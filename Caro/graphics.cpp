@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include "graphics.h"
 
 void Graphics::logErrorAndExit(const char* msg, const char* error)
@@ -28,6 +29,11 @@ void Graphics::initSDL() {
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) {
+        logErrorAndExit( "SDL_mixer could not initialize! SDL_mixer Error: %s\n",Mix_GetError() );
+    }
+
 }
 
 void Graphics::init() {
@@ -38,6 +44,7 @@ void Graphics::init() {
     cellEmpty  = loadTexture("images//cell_empty.png");
     cellX  = loadTexture("images//cell_x.png");
     cellO  = loadTexture("images//cell_o.png");
+    cellEmptyClick = loadTexture("images//cell_empty_click.png");
 
     win = loadTexture("images//win.png");
     lose = loadTexture("images//lose.png");
@@ -94,12 +101,14 @@ void Graphics::blitRect(SDL_Texture *texture, SDL_Rect *src, int x, int y)
 
 void Graphics::quit()
 {
+    Mix_Quit();
     SDL_DestroyTexture(cellEmpty);
     cellEmpty = nullptr;
     SDL_DestroyTexture(cellX);
     cellX = nullptr;
     SDL_DestroyTexture(cellO);
     cellO = nullptr;
+    cellEmptyClick = nullptr;
     SDL_DestroyTexture(win);
     win = nullptr;
     SDL_DestroyTexture(lose);
@@ -128,6 +137,7 @@ void Graphics::render(Tictactoe& game) {
                 break;
                 case O_CELL: renderTextureResizeImage(cellO, &cellRect);
                 break;
+                case EMPTY_CELL_CLICK: renderTextureResizeImage(cellEmptyClick, &cellRect);
             };
 
         };
@@ -143,3 +153,27 @@ void Graphics::render(Tictactoe& game) {
 
     presentScene();
 }
+
+Mix_Music* Graphics::loadMusic(const char* path)
+{
+	Mix_Music* gMusic = Mix_LoadMUS(path);
+	if (gMusic == nullptr) {
+		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,
+			SDL_LOG_PRIORITY_ERROR,
+			"Could not load music! SDL_mixer Error: %s", Mix_GetError());
+	}
+	return gMusic;
+}
+
+void Graphics::play(Mix_Music* gMusic)
+{
+	if (gMusic == nullptr) return;
+
+	if (Mix_PlayingMusic() == 0) {
+		Mix_PlayMusic(gMusic, -1);
+	}
+	else if (Mix_PausedMusic() == 1) {
+		Mix_ResumeMusic();
+	}
+}
+
