@@ -57,18 +57,18 @@
 	"defs.h"
 	"graphics.h"
 
-1721757354 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\logic.cpp
+1721841348 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\logic.cpp
 	<iostream>
 	<time.h>
 	<SDL.h>
 	<SDL_image.h>
 	"logic.h"
 
-1721757374 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\logic.h
+1721841250 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\logic.h
 	"defs.h"
 	<bits/stdc++.h>
 
-1721757046 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\main.cpp
+1721841549 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -77,14 +77,14 @@
 
 1721749418 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\defs.h
 
-1721757660 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.h
+1721841428 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
 	"defs.h"
 	"logic.h"
 
-1721757650 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.cpp
+1721841795 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

@@ -31,12 +31,13 @@ void Tictactoe::move(int row, int column) {
                 oldClicked = {row, column};
             }
         } else if (fill[row][column] == CLICKED) {
-            //if (nextMove == X_CELL) graphics.play(graphics.gClickX);
-            //if (nextMove == O_CELL) graphics.play(graphics.gClickO);
             board[row][column] = nextMove;
             nextMove = (nextMove == O_CELL) ? X_CELL : O_CELL;
             fill[row][column] = FILLED;
             clickExists = false;
+            clickMusic = true;
+        } else {
+            clickMusic = false;
         }
     }
 }
@@ -76,21 +77,28 @@ bool Tictactoe::checkWinColumn (char board[][BOARD_SIZE], int i, int j) {
 
 bool Tictactoe::checkWinCross (char board[][BOARD_SIZE], int i, int j) {
     char cell = board[i][j];
+    bool flag = false;
     if (cell != EMPTY_CELL && cell != EMPTY_CELL_CLICK && i <= BOARD_SIZE - 5) {
         if (j - 4 >= 0) {
             for (int add = 0; add <= 3; add++) {
-                if (board[i + add][j - add] != board[i + add + 1][j - add -1]) return false;
+                if (board[i + add][j - add] != board[i + add + 1][j - add -1]) {
+                    flag = false;
+                    break;
+                }
+                flag = true;
             }
-            return true;
         }
-        if (j + 4 < BOARD_SIZE) {
+        if (j + 4 < BOARD_SIZE && flag == false) {
             for (int add = 0; add <= 3; add++) {
-                if (board[i + add][j + add] != board[i + add + 1][j + add +1]) return false;
+                if (board[i + add][j + add] != board[i + add + 1][j + add +1]) {
+                    flag = false;
+                    break;
+                }
+                flag = true;
             }
-            return true;
         }
     }
-    return false;
+    return flag;
 }
 
 bool Tictactoe::checkWin(char board[][BOARD_SIZE]) {

@@ -49,10 +49,10 @@ void Graphics::init() {
     win = loadTexture("images//win.png");
     lose = loadTexture("images//lose.png");
 
-    gMusic = loadMusic("assets\\game_music.mp3");
+    gMusic = loadMusic("sounds//game_music.mp3");
 
-    gClickX = loadSound("assets\\click_x.mp3");
-    gClickO = loadSound("assets\\click_o.mp3");
+    gClickX = loadSound("sounds//click_x.mp3");
+    gClickO = loadSound("sounds//click_o.mp3");
 }
 
 void Graphics::prepareScene(SDL_Texture * background)
@@ -176,6 +176,7 @@ void Graphics::play(Mix_Music* gMusic)
 
 	if (Mix_PlayingMusic() == 0) {
 		Mix_PlayMusic(gMusic, -1);
+		Mix_VolumeMusic(12);
 	}
 	else if (Mix_PausedMusic() == 1) {
 		Mix_ResumeMusic();
@@ -197,8 +198,11 @@ void Graphics::play(Mix_Chunk* gChunk) {
 }
 
 void Graphics::playClickMusic (Tictactoe& game) {
-    if (game.nextMove == X_CELL) play(gClickX);
-    if (game.nextMove == O_CELL) play(gClickO);
+    if (game.clickExists == true || game.clickMusic == false) {
+        return;
+    }
+    if (game.nextMove == O_CELL) play(gClickX);
+    if (game.nextMove == X_CELL) play(gClickO);
 }
 
 

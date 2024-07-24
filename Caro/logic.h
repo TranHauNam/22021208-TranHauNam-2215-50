@@ -11,6 +11,7 @@ struct Tictactoe {
     Status fill[BOARD_SIZE][BOARD_SIZE];
     pair<int, int> oldClicked;
     bool clickExists = false;
+    bool clickMusic = true;
     char nextMove = selectNextMove();
     void init ();
     void move (int row, int col);

@@ -49,8 +49,6 @@ int main(int argc, char *argv[])
                  SDL_GetMouseState(&x, &y);
                  processClick(x, y, game);
                  graphics.playClickMusic(game);
-                 //if (game.nextMove == X_CELL) graphics.play(graphics.gClickX);
-                 //if (game.nextMove == O_CELL) graphics.play(gClickO);
                  graphics.render(game);
                  break;
         }
