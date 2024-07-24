@@ -13,6 +13,8 @@ struct Graphics {
 	SDL_Texture *background;
 	SDL_Texture *cellEmpty, *cellX, *cellO, *cellEmptyClick;
 	SDL_Texture *win, *lose;
+	Mix_Music *gMusic;
+	Mix_Chunk *gClickX, *gClickO;
 
 	void logErrorAndExit(const char* msg, const char* error);
 	void initSDL();
@@ -27,6 +29,9 @@ struct Graphics {
     void render(Tictactoe &game);
     Mix_Music* loadMusic(const char* path);
     void play(Mix_Music* gMusic);
+    Mix_Chunk* loadSound(const char* path);
+    void play(Mix_Chunk* gChunk);
+    void playClickMusic (Tictactoe& game);
 };
 
 #endif // _GRAPHICS__H

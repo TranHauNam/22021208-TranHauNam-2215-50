@@ -1,0 +1,69 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+class Student {
+    private:
+        int age;
+        string first_name;
+        string last_name;
+        int standard;
+    public:
+        void set_age(int _age) {
+            age=_age;
+        }
+        int get_age() {
+            return age;
+        }
+        void set_first_name(string _first_name) {
+            first_name=_first_name;
+        }
+        string get_first_name() {
+            return first_name;
+        }
+        void set_last_name(string _last_name) {
+            last_name=_last_name;
+        }
+        string get_last_name() {
+            return last_name;
+        }
+        void set_standard(int _standard) {
+            standard=_standard;
+        }
+        int get_standard() {
+            return standard;
+        }
+        string To_string() {
+            string result="";
+            result+=to_string(age)+"\n";
+            result+=last_name+", ";
+            result+=first_name+"\n";
+            result+=to_string(standard)+"\n"+"\n";
+            result+=to_string(age);
+            result+=","+first_name+",";
+            result+=last_name+",";
+            result+=to_string(standard);
+            return result;
+        }
+};
+
+int main() {
+    int age;
+    cin>>age;
+    string first_name;
+    cin>>first_name;
+    string last_name;
+    cin>>last_name;
+    int standard;
+    cin>>standard;
+    Student student;
+    student.set_age(age);
+    student.set_first_name(first_name);
+    student.set_last_name(last_name);
+    student.set_standard(standard);
+    cout<<student.To_string();
+    return 0;
+}

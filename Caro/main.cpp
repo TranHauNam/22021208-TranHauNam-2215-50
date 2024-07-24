@@ -30,8 +30,7 @@ int main(int argc, char *argv[])
     Graphics graphics;
     graphics.init();
 
-    Mix_Music *gMusic = graphics.loadMusic("assets\\game_music.mp3");
-    graphics.play(gMusic);
+    graphics.play(graphics.gMusic);
 
     Tictactoe game;
     game.init();
@@ -49,14 +48,18 @@ int main(int argc, char *argv[])
             case SDL_MOUSEBUTTONDOWN:
                  SDL_GetMouseState(&x, &y);
                  processClick(x, y, game);
+                 graphics.playClickMusic(game);
+                 //if (game.nextMove == X_CELL) graphics.play(graphics.gClickX);
+                 //if (game.nextMove == O_CELL) graphics.play(gClickO);
                  graphics.render(game);
                  break;
         }
         //SDL_Delay(100);
     }
 
-    if (gMusic != nullptr) Mix_FreeMusic( gMusic );
-
+    if (graphics.gMusic != nullptr) Mix_FreeMusic(graphics.gMusic);
+    if (graphics.gClickX != nullptr) Mix_FreeChunk(graphics.gClickX);
+    if (graphics.gClickO != nullptr) Mix_FreeChunk(graphics.gClickO);
     graphics.quit();
     return 0;
 }

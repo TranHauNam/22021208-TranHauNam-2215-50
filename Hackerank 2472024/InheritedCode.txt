@@ -1,0 +1,9 @@
+struct BadLengthException : public exception {
+    int n;
+    BadLengthException (int _n) {
+        n=_n;
+    }
+    int what() {
+        return n;
+    }
+};

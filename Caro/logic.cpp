@@ -31,6 +31,8 @@ void Tictactoe::move(int row, int column) {
                 oldClicked = {row, column};
             }
         } else if (fill[row][column] == CLICKED) {
+            //if (nextMove == X_CELL) graphics.play(graphics.gClickX);
+            //if (nextMove == O_CELL) graphics.play(graphics.gClickO);
             board[row][column] = nextMove;
             nextMove = (nextMove == O_CELL) ? X_CELL : O_CELL;
             fill[row][column] = FILLED;

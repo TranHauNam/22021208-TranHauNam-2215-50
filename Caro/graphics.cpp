@@ -48,6 +48,11 @@ void Graphics::init() {
 
     win = loadTexture("images//win.png");
     lose = loadTexture("images//lose.png");
+
+    gMusic = loadMusic("assets\\game_music.mp3");
+
+    gClickX = loadSound("assets\\click_x.mp3");
+    gClickO = loadSound("assets\\click_o.mp3");
 }
 
 void Graphics::prepareScene(SDL_Texture * background)
@@ -176,4 +181,24 @@ void Graphics::play(Mix_Music* gMusic)
 		Mix_ResumeMusic();
 	}
 }
+
+Mix_Chunk* Graphics::loadSound(const char* path) {
+    Mix_Chunk* gChunk = Mix_LoadWAV(path);
+    if (gChunk == nullptr) {
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,
+            SDL_LOG_PRIORITY_ERROR,
+            "Could not load sound! SDL_mixer Error: %s", Mix_GetError());
+    }
+}
+void Graphics::play(Mix_Chunk* gChunk) {
+    if (gChunk != nullptr) {
+        Mix_PlayChannel(-1, gChunk, 0);
+    }
+}
+
+void Graphics::playClickMusic (Tictactoe& game) {
+    if (game.nextMove == X_CELL) play(gClickX);
+    if (game.nextMove == O_CELL) play(gClickO);
+}
+
 

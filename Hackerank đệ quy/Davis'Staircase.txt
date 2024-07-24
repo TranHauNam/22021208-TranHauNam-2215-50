@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+const long long MOD=10000000007;
+int main() {
+    vector<long long> dp(37, 0);
+
+    dp[0] = 1;
+    dp[1] = 1;
+    dp[2] = 2;
+    
+    for (int i = 3; i <= 36; ++i) {
+        dp[i] = ((dp[i-1] + dp[i-2]) % MOD + dp[i-3]) % MOD;
+    }
+    
+    int s;
+    cin>>s;
+    while(s--) {
+        int n;
+        cin>>n;
+        cout<<dp[n]<<endl;
+    }
+}

@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+long long sumDigit(string s) {
+    int sum=0;
+    while(s.length()) {
+        char tmp=s[s.length()-1];
+        int temp=tmp-'0';
+        sum+=temp;
+        s.pop_back();
+    }
+    return sum;
+}
+
+long long superDigit(string n, long long k) {
+    long long sum=sumDigit(n);
+    sum*=k;
+    string s=to_string(sum);
+    while(sum>=10) {
+        sum=sumDigit(s);
+        s=to_string(sum);
+    }
+    return sum;
+}
+
+int main() {
+    string n;
+    long long k;
+    cin>>n>>k;
+    cout<<superDigit(n,k);
+}

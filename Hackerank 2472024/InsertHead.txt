@@ -1,0 +1,6 @@
+SinglyLinkedListNode* insertNodeAtHead(SinglyLinkedListNode* llist, int data) {
+    SinglyLinkedListNode* head = new SinglyLinkedListNode(data);
+    if (llist == NULL) return head;
+    head->next = llist;
+    return head;
+}

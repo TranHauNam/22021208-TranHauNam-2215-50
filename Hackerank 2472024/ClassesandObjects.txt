@@ -1,0 +1,34 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+class Student {
+public:
+    int score[5];
+    void input() {
+        for(int i=0;i<5;i++) cin>>score[i];
+    }
+    int calculateTotalScore() {
+        int sum=0;
+        for(int i=0;i<5;i++) sum+=score[i];
+        return sum;
+    }
+};
+int main() {
+    int n;
+    cin>>n;
+    Student student[n];
+    int count=0;
+    student[0].input();
+    int markKristen=student[0].calculateTotalScore();
+    for(int i=1;i<n;i++) {
+        student[i].input();
+        if (student[i].calculateTotalScore()>markKristen) count++;
+    }
+
+    cout<<count;
+    return 0;
+}

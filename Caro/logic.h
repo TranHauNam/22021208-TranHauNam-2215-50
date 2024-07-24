@@ -3,7 +3,6 @@
 
 #include "defs.h"
 #include <bits/stdc++.h>
-#include <utility>
 using namespace std;
 
 struct Tictactoe {
