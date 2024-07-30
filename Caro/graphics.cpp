@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 #include "graphics.h"
 
 void Graphics::logErrorAndExit(const char* msg, const char* error)
@@ -34,6 +35,10 @@ void Graphics::initSDL() {
         logErrorAndExit( "SDL_mixer could not initialize! SDL_mixer Error: %s\n",Mix_GetError() );
     }
 
+    if (TTF_Init() == -1) {
+            logErrorAndExit("SDL_ttf could not initialize! SDL_ttf Error: ",
+                             TTF_GetError());
+    }
 }
 
 void Graphics::init() {
@@ -53,6 +58,10 @@ void Graphics::init() {
 
     gClickX = loadSound("sounds//click_x.mp3");
     gClickO = loadSound("sounds//click_o.mp3");
+
+    font = loadFont("fonts//font.ttf", 40);
+    color = {255, 255, 0, 0};
+    helloText = renderText("Hello", font, color);
 }
 
 void Graphics::prepareScene(SDL_Texture * background)
@@ -106,7 +115,6 @@ void Graphics::blitRect(SDL_Texture *texture, SDL_Rect *src, int x, int y)
 
 void Graphics::quit()
 {
-    Mix_Quit();
     SDL_DestroyTexture(cellEmpty);
     cellEmpty = nullptr;
     SDL_DestroyTexture(cellX);
@@ -120,7 +128,8 @@ void Graphics::quit()
     lose = nullptr;
 
     IMG_Quit();
-
+    Mix_Quit();
+    TTF_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
@@ -128,6 +137,7 @@ void Graphics::quit()
 
 void Graphics::render(Tictactoe& game) {
     prepareScene(background);
+    renderTexture(helloText, 0, 0);
     SDL_Rect destRect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
     //renderTextureResizeImage(background, &destRect);
     for (int i = 0; i < BOARD_SIZE; i++) {
@@ -204,5 +214,39 @@ void Graphics::playClickMusic (Tictactoe& game) {
     if (game.nextMove == O_CELL) play(gClickX);
     if (game.nextMove == X_CELL) play(gClickO);
 }
+
+TTF_Font* Graphics::loadFont(const char* path, int size)
+{
+    TTF_Font* gFont = TTF_OpenFont(path, size);
+    if (gFont == nullptr) {
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,
+            SDL_LOG_PRIORITY_ERROR,
+            "Load font %s", TTF_GetError());
+    }
+}
+
+SDL_Texture* Graphics::renderText(const char* text,
+    TTF_Font* font, SDL_Color textColor)
+{
+    SDL_Surface* textSurface =
+        TTF_RenderText_Solid(font, text, textColor);
+    if (textSurface == nullptr) {
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,
+            SDL_LOG_PRIORITY_ERROR,
+            "Render text surface %s", TTF_GetError());
+        return nullptr;
+    }
+
+    SDL_Texture* texture =
+        SDL_CreateTextureFromSurface(renderer, textSurface);
+    if (texture == nullptr) {
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,
+            SDL_LOG_PRIORITY_ERROR,
+            "Create texture from text %s", SDL_GetError());
+    }
+    SDL_FreeSurface(textSurface);
+    return texture;
+}
+
 
 

@@ -68,26 +68,26 @@
 	"defs.h"
 	<bits/stdc++.h>
 
-1721841549 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\main.cpp
+1721844818 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\main.cpp
 	<iostream>
-	<SDL.h>
-	<SDL_image.h>
 	"defs.h"
 	"graphics.h"
 
-1721749418 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\defs.h
+1721842862 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\defs.h
 
-1721841428 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.h
+1721844744 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
+	<SDL_ttf.h>
 	"defs.h"
 	"logic.h"
 
-1721841795 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.cpp
+1721844744 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
+	<SDL_ttf.h>
 	"graphics.h"
 

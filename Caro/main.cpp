@@ -1,6 +1,4 @@
 #include <iostream>
-#include <SDL.h>
-#include <SDL_image.h>
 #include "defs.h"
 #include "graphics.h"
 
@@ -29,7 +27,6 @@ int main(int argc, char *argv[])
 {
     Graphics graphics;
     graphics.init();
-
     graphics.play(graphics.gMusic);
 
     Tictactoe game;
@@ -54,6 +51,9 @@ int main(int argc, char *argv[])
         }
         //SDL_Delay(100);
     }
+    SDL_DestroyTexture( graphics.helloText );
+    TTF_CloseFont( graphics.font );
+    graphics.helloText = NULL;
 
     if (graphics.gMusic != nullptr) Mix_FreeMusic(graphics.gMusic);
     if (graphics.gClickX != nullptr) Mix_FreeChunk(graphics.gClickX);

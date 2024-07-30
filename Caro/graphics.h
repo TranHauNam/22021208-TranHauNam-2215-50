@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 #include "defs.h"
 #include "logic.h"
 
@@ -15,6 +16,9 @@ struct Graphics {
 	SDL_Texture *win, *lose;
 	Mix_Music *gMusic;
 	Mix_Chunk *gClickX, *gClickO;
+	TTF_Font* font;
+	SDL_Color color;
+	SDL_Texture* helloText;
 
 	void logErrorAndExit(const char* msg, const char* error);
 	void initSDL();
@@ -32,6 +36,8 @@ struct Graphics {
     Mix_Chunk* loadSound(const char* path);
     void play(Mix_Chunk* gChunk);
     void playClickMusic (Tictactoe& game);
+    SDL_Texture* renderText(const char* text, TTF_Font* font, SDL_Color textColor);
+    TTF_Font* loadFont(const char* path, int size);
 };
 
 #endif // _GRAPHICS__H
