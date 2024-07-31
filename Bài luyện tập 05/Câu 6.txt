@@ -1,0 +1,9 @@
+void reverse(char *s) {
+    char* left=s;
+    char* right=s+strlen(s)-1;
+    while (left<=right) {
+        swap(*left,*right);
+        left++;
+        right--;
+    }
+}

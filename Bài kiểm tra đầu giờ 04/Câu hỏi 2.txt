@@ -1,0 +1,46 @@
+// Toán tử in ra màn hình
+ostream& operator<<(ostream& os, const BigInt& num)
+{
+    os<<num.value;
+    return os;
+}
+
+// Hàm khởi tạo
+BigInt::BigInt() 
+{
+    value="0";
+}
+
+BigInt::BigInt(const char *num)
+{
+    value=num;
+}
+
+BigInt::BigInt(const BigInt& num)
+{
+    value=num.value;
+}
+
+// Toán tử cộng
+BigInt operator+(const BigInt& num, const BigInt& other)
+{
+    string result="";
+    int i=num.value.size()-1;
+    int j=other.value.size()-1;
+    int carry=0;
+    while(i>=0||j>=0||carry>0) {
+        int sum=carry;
+        if(i>=0) {
+            sum+=num.value[i]-'0';
+            i--;
+        }
+        if(j>=0) {
+            sum+=other.value[j]-'0';
+            j--;
+        }
+        carry=sum/10;
+        result+=(sum%10)+'0';
+    }
+    reverse(result.begin(), result.end());
+    return BigInt(result.c_str());
+}

@@ -1,0 +1,7 @@
+void rFilter(char *s) {
+    char* right=s+strlen(s)-1;
+    while(*right>'z'||*right<'A'||(*right>'Z'&&*right<'a')) {
+        *right='_';
+        right--;
+    }
+}
