@@ -1,0 +1,12 @@
+string decimal_to_binary(long number)
+{   
+    if(number==0) return "0";
+    string s="";
+    while (number!=0) {
+        string tempResult=to_string(number%2);
+        s+=tempResult;
+        number/=2;
+    }
+    reverse(s.begin(),s.end());
+    return s;
+}

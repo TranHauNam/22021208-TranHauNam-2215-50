@@ -1,0 +1,37 @@
+struct Time {
+    int h, m, s;
+    Time () {
+        h = 0;
+        m = 0;
+        s = 0;
+    }
+    Time (int _h, int _m, int _s) {
+        h = _h;
+        m = _m;
+        s = _s;
+    }
+    int second () {
+        return h*3600+m*60+s;
+    }
+    void print () {
+        if (h < 10) cout << "0";
+        cout << h << ":";
+        if (m < 10) cout << "0";
+        cout << m << ":";
+        if (s < 10) cout << "0";
+        cout << s << "\n";
+    }
+};
+
+Time normalize(int h, int m, int s) {
+    while (s >= 60) {
+        s -= 60;
+        m++;
+    }
+    while (m >= 60) {
+        m -= 60;
+        h++;
+    }
+    Time time = Time (h, m, s);
+    return time;
+}
