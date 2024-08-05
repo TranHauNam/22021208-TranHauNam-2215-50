@@ -1,0 +1,6 @@
+Node* insertHead(Node* head, int value) {
+    Node* temp=new Node;
+    temp->value=value;
+    temp->next=head;
+    return temp;
+}

@@ -1,0 +1,20 @@
+Node* deleteSingle(Node* head) {
+    Node* temp=head;
+    bool checkHead=true;
+    while (temp->value==temp->next->value) {
+        temp=temp->next;
+        checkHead=false;
+    }
+    if (checkHead) {
+        head=head->next;
+    } else {
+        while (temp->next->next!=NULL&&temp->next->value==temp->next->next->value) {
+            temp=temp->next;
+            while (temp->value==temp->next->value) {
+                temp=temp->next;
+            }
+        }
+        temp->next=temp->next->next;
+    }
+    return head;
+}

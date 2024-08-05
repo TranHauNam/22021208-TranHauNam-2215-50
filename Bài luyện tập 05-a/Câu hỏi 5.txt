@@ -1,0 +1,13 @@
+void printLast(Node* head, int k) {
+    Node* temp=head;
+    int size=0;
+    while(temp!=NULL) {
+        size++;
+        temp=temp->next;
+    }
+    for(int i=0;i<size-k;i++) head=head->next;
+    while(head!=NULL) {
+        cout<<head->value<<" ";
+        head=head->next;
+    }
+}

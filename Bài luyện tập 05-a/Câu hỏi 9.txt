@@ -1,0 +1,42 @@
+Node* createNode(int value, Node* next = nullptr) {
+    Node* newNode = new Node;
+    newNode->value = value;
+    newNode->next = next;
+    return newNode;
+}
+Node* insert(Node* head, int value) {
+    Node* add=createNode(value);
+    if (head==NULL) return add;
+    if (head->next==NULL) {
+        if (value<head->value) {
+            add->next=head;
+            return add;
+        } else if (value>head->value) {
+            head->next=add;
+            return head;
+        }
+    }
+    Node* temp=head;
+    if (head->value<head->next->value) {
+        if (head->value>value) {
+            add->next=head;
+            return add;
+        }
+        while (temp->next!=NULL&&temp->value<value&&temp->next->value<value) {
+            temp=temp->next;
+        }
+        add->next=temp->next;
+        temp->next=add;
+    } else {
+        if (head->value<value) {
+            add->next=head;
+            return add;
+        }
+        while (temp->next!=NULL&&temp->value>value&&temp->next->value>value) {
+            temp=temp->next;
+        }
+        add->next=temp->next;
+        temp->next=add;
+    }
+    return head;
+}

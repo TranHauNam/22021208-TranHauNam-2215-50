@@ -1,0 +1,14 @@
+Node* insertTail(Node* head, int value) {
+    Node* add=new Node;
+    add->value=value;
+    add->next=NULL;
+    if (head==NULL) {
+        return add;
+    }
+    Node* temp=head;
+    while(temp->next!=NULL) {
+        temp=temp->next;
+    }
+    temp->next=add;
+    return head;
+}
