@@ -6,7 +6,6 @@
 using namespace std;
 
 struct Tictactoe {
-    //bool win = false;
     char board[BOARD_SIZE][BOARD_SIZE];
     Status fill[BOARD_SIZE][BOARD_SIZE];
     pair<int, int> oldClicked;
@@ -20,6 +19,7 @@ struct Tictactoe {
     bool checkWinRow (char board[][BOARD_SIZE], int i, int j);
     bool checkWinColumn (char board[][BOARD_SIZE], int i, int j);
     bool checkWinCross (char board[][BOARD_SIZE], int i, int j);
+    int count = 0;
 };
 
 #endif // _LOGIC__H

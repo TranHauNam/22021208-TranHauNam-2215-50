@@ -4,19 +4,7 @@
 
 using namespace std;
 
-void waitUntilKeyPressed()
-{
-    SDL_Event e;
-    while (true) {
-        if ( SDL_PollEvent(&e) != 0 &&
-             (e.type == SDL_KEYDOWN || e.type == SDL_QUIT) )
-            return;
-        SDL_Delay(100);
-    }
-}
-
 void processClick(int x, int y, Tictactoe& game) {
-    // chuyển tọa độ màn hình x, y thành tọa độ hàng cột của game
     int clickedCol = (x - BOARD_X) / CELL_SIZE;
     int clickedRow = (y - BOARD_Y) / CELL_SIZE;
     game.move(clickedRow, clickedCol);
@@ -51,9 +39,6 @@ int main(int argc, char *argv[])
         }
         //SDL_Delay(100);
     }
-    SDL_DestroyTexture( graphics.helloText );
-    TTF_CloseFont( graphics.font );
-    graphics.helloText = NULL;
 
     if (graphics.gMusic != nullptr) Mix_FreeMusic(graphics.gMusic);
     if (graphics.gClickX != nullptr) Mix_FreeChunk(graphics.gClickX);

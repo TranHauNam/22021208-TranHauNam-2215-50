@@ -31,11 +31,20 @@ void Tictactoe::move(int row, int column) {
                 oldClicked = {row, column};
             }
         } else if (fill[row][column] == CLICKED) {
-            board[row][column] = nextMove;
-            nextMove = (nextMove == O_CELL) ? X_CELL : O_CELL;
-            fill[row][column] = FILLED;
-            clickExists = false;
-            clickMusic = true;
+            if (count == 0) {
+                board[row][column] = nextMove;
+                fill[row][column] = FILLED;
+                clickExists = false;
+                clickMusic = true;
+                count++;
+            } else if (count == 1) {
+                board[row][column] = nextMove;
+                fill[row][column] = FILLED;
+                clickExists = false;
+                clickMusic = true;
+                nextMove = (nextMove == O_CELL) ? X_CELL : O_CELL;
+                count = 0;
+            }
         } else {
             clickMusic = false;
         }
@@ -51,8 +60,8 @@ char Tictactoe::selectNextMove () {
 
 bool Tictactoe::checkWinRow (char board[][BOARD_SIZE], int i, int j) {
     char cell = board[i][j];
-    if (cell != EMPTY_CELL && cell != EMPTY_CELL_CLICK && j <= BOARD_SIZE - 5) {
-        for (int position = j; position <= j + 3; position++) {
+    if (cell != EMPTY_CELL && cell != EMPTY_CELL_CLICK && j <= BOARD_SIZE - 3) {
+        for (int position = j; position <= j + 1; position++) {
             if (board[i][position] != board[i][position + 1]) {
                 return false;
             }
@@ -64,8 +73,8 @@ bool Tictactoe::checkWinRow (char board[][BOARD_SIZE], int i, int j) {
 
 bool Tictactoe::checkWinColumn (char board[][BOARD_SIZE], int i, int j) {
     char cell = board[i][j];
-    if (cell != EMPTY_CELL && cell != EMPTY_CELL_CLICK && i <= BOARD_SIZE - 5) {
-        for (int position = i; position <= i + 3; position++) {
+    if (cell != EMPTY_CELL && cell != EMPTY_CELL_CLICK && i <= BOARD_SIZE - 3) {
+        for (int position = i; position <= i + 1; position++) {
             if (board[position][j] != board[position + 1][j]) {
                 return false;
             }
@@ -78,9 +87,9 @@ bool Tictactoe::checkWinColumn (char board[][BOARD_SIZE], int i, int j) {
 bool Tictactoe::checkWinCross (char board[][BOARD_SIZE], int i, int j) {
     char cell = board[i][j];
     bool flag = false;
-    if (cell != EMPTY_CELL && cell != EMPTY_CELL_CLICK && i <= BOARD_SIZE - 5) {
-        if (j - 4 >= 0) {
-            for (int add = 0; add <= 3; add++) {
+    if (cell != EMPTY_CELL && cell != EMPTY_CELL_CLICK && i <= BOARD_SIZE - 3) {
+        if (j - 2 >= 0) {
+            for (int add = 0; add <= 1; add++) {
                 if (board[i + add][j - add] != board[i + add + 1][j - add -1]) {
                     flag = false;
                     break;
@@ -88,8 +97,8 @@ bool Tictactoe::checkWinCross (char board[][BOARD_SIZE], int i, int j) {
                 flag = true;
             }
         }
-        if (j + 4 < BOARD_SIZE && flag == false) {
-            for (int add = 0; add <= 3; add++) {
+        if (j + 2 < BOARD_SIZE && flag == false) {
+            for (int add = 0; add <= 1; add++) {
                 if (board[i + add][j + add] != board[i + add + 1][j + add +1]) {
                     flag = false;
                     break;

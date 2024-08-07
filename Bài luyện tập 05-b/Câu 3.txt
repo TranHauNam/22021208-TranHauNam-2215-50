@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+int dx[8]={-1,-1,-1,0,0,1,1,1};
+int dy[8]={-1,0,1,-1,1,-1,0,1};
+int main () {
+    int m,n,k;
+    cin>>m>>n>>k;
+    char a[m][n];
+    bool opened[m][n];
+    for (int i=0;i<m;i++) {
+        for (int j=0;j<n;j++) {
+            cin>>a[i][j];
+            opened[i][j]=false;
+        }
+    }
+    int x,y;
+    while (cin>>x>>y) {
+        opened[x][y]=true;
+        if (a[x][y]=='E') {
+            for (int i=0;i<m;i++) {
+                for (int j=0;j<n;j++) {
+                    if (opened[i][j]==false) cout<<-1<<" ";
+                    else {
+                        int sum=0;
+                        for (int k=0;k<8;k++) {
+                            int iNew=i+dx[k];
+                            int jNew=j+dy[k];
+                            if (iNew>=0&&iNew<m&&jNew>=0&&jNew<n) {
+                                if (a[iNew][jNew]=='M') sum++;
+                            }
+                        }
+                        cout<<sum<<" ";
+                    }
+                }
+                cout<<endl;
+            }
+        } else if (a[x][y]=='M') {
+            cout<<"YOU'RE DEAD!"<<endl;
+            for (int i=0;i<m;i++) {
+                for (int j=0;j<n;j++) {
+                    cout<<a[i][j];
+                }
+                cout<<endl;
+            }
+            break;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+struct Complex {
+    int a;
+    int b;
+    Complex () {
+        a=0;
+        b=0;
+    }
+
+    Complex (int _a, int _b) {
+        a=_a;
+        b=_b;
+    }
+
+    double abs() {
+        return sqrt(a*a+b*b);
+    }
+
+    void print() {
+        if (a==0&&b==0) {
+            cout<<"0"<<endl;
+        } else if (a==0) {
+            if (b==1) {
+                cout<<"i"<<endl;
+            } else if (b==-1) {
+                cout<<"-i"<<endl;
+            } else {
+                cout<<b<<"i"<<endl;
+            }
+        } else if (b==0) {
+            cout<<a<<endl;
+        } else {
+            if (b==1) {
+                cout<<a<<"+i"<<endl;
+            } else if (b==-1) {
+                cout<<a<<"-i"<<endl;
+            } else if (b>0) {
+                cout<<a<<"+"<<b<<"i"<<endl;
+            } else {
+                cout<<a<<b<<"i"<<endl;
+            }
+        }
+    }
+};
+
+Complex add(Complex A, Complex B) {
+    Complex sum;
+    sum.a=A.a+B.a;
+    sum.b=A.b+B.b;
+    return sum;
+}

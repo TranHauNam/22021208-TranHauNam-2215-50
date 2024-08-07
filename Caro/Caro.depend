@@ -64,11 +64,11 @@
 	<SDL_image.h>
 	"logic.h"
 
-1721841250 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\logic.h
+1723004997 c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\logic.h
 	"defs.h"
 	<bits/stdc++.h>
 
-1721844818 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\main.cpp
+1722954630 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\main.cpp
 	<iostream>
 	"defs.h"
 	"graphics.h"
@@ -83,7 +83,7 @@
 	"defs.h"
 	"logic.h"
 
-1721845031 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.cpp
+1722954771 source:c:\users\admin\onedrive\documents\22021208-tranhaunam-2215-50\caro\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

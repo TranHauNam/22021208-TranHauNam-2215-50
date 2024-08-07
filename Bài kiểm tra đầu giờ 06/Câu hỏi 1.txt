@@ -1,0 +1,43 @@
+Point::Point() {
+    x=0;
+    y=0;
+}
+Point::Point(double _x,double _y) {
+    x=_x;
+    y=_y;
+}
+Point::Point(const Point& p) {
+    x=p.x;
+    y=p.y;
+}
+Triangle::Triangle(const Point& _p1, const Point& _p2,  const Point& _p3) {
+    p1=_p1;
+    p2=_p2;
+    p3=_p3;
+}
+double Triangle::getPerimeter() const {
+    double x1=p1.x;
+    double y1=p1.y;
+    double x2=p2.x;
+    double y2=p2.y;
+    double x3=p3.x;
+    double y3=p3.y;
+    double edge1=sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+    double edge2=sqrt((x2-x3)*(x2-x3)+(y2-y3)*(y2-y3));
+    double edge3=sqrt((x1-x3)*(x1-x3)+(y1-y3)*(y1-y3));
+    return edge1+edge2+edge3;
+}
+double Triangle::getArea() const {
+    double x1=p1.x;
+    double y1=p1.y;
+    double x2=p2.x;
+    double y2=p2.y;
+    double x3=p3.x;
+    double y3=p3.y;
+    double edge1=sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+    double edge2=sqrt((x2-x3)*(x2-x3)+(y2-y3)*(y2-y3));
+    double edge3=sqrt((x1-x3)*(x1-x3)+(y1-y3)*(y1-y3));
+    double p=(edge1+edge2+edge3)/2;
+    double result=sqrt(p*(p-edge1)*(p-edge2)*(p-edge3));
+    return result;
+}

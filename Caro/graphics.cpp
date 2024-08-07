@@ -51,7 +51,7 @@ void Graphics::init() {
     cellO  = loadTexture("images//cell_o.png");
     cellEmptyClick = loadTexture("images//cell_empty_click.png");
 
-    win = loadTexture("images//win.png");
+    win = loadTexture("images//background.jpg");
     lose = loadTexture("images//lose.png");
 
     gMusic = loadMusic("sounds//game_music.mp3");
@@ -60,8 +60,8 @@ void Graphics::init() {
     gClickO = loadSound("sounds//click_o.mp3");
 
     font = loadFont("fonts//font.ttf", 40);
-    color = {255, 255, 0, 0};
-    helloText = renderText("Hello", font, color);
+    color = {255, 178, 0, 0};
+    helloText = renderText("Caro", font, color);
 }
 
 void Graphics::prepareScene(SDL_Texture * background)
@@ -133,6 +133,10 @@ void Graphics::quit()
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+
+    SDL_DestroyTexture(helloText);
+    TTF_CloseFont(font);
+    helloText = NULL;
 }
 
 void Graphics::render(Tictactoe& game) {
@@ -159,8 +163,8 @@ void Graphics::render(Tictactoe& game) {
     }
 
     if (game.checkWin(game.board)) {
-        SDL_RenderClear(renderer);
-        renderTextureResizeImage(win, &destRect);
+        SDL_Delay(100);
+        exit(0);
     }
     //else {
     //    renderTextureResizeImage(lose, &destRect);
