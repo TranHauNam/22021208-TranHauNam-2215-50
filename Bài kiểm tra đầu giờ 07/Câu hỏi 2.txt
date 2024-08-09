@@ -1,0 +1,47 @@
+Node* insertSorted(Node* sortedHead, Node* add) {
+    if (sortedHead==NULL) return add;
+    Node* temp=sortedHead;
+    if (temp->next==NULL) {
+        if (temp->getValue()>add->getValue()) {
+            add->next=temp;
+            temp->prev=add;
+            return add;
+        } else {
+            temp->next=add;
+            add->prev=temp;
+            return temp;
+        }
+    }
+    if (temp->getValue()>=add->getValue()) {
+        add->next=temp;
+        temp->prev=add;
+        return add;
+    }
+    while (temp->next!=NULL&&temp->getValue()<add->getValue()) {
+        temp=temp->next;
+    }
+    if (temp->next==NULL&&temp->getValue()<add->getValue()) {
+        temp->next=add;
+        add->prev=temp;
+    } else {
+        temp->prev->next=add;
+        add->prev=temp->prev;
+        temp->prev=add;
+        add->next=temp;
+    }
+    return sortedHead;
+}
+
+Node* sort(Node* head) {
+    if (head==NULL) return NULL;
+    Node* sortedHead=NULL;
+    Node* temp=head;
+    while (temp!=NULL) {
+        Node* nextNode=temp->next;
+        temp->next=NULL;
+        temp->prev=NULL;
+        sortedHead=insertSorted(sortedHead,temp);
+        temp=nextNode;
+    }
+    return sortedHead;
+}

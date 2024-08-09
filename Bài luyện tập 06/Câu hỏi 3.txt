@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main () {
+    int m;
+    cin>>m;
+    int a[m], b[m];
+    set<int> setA;
+    set<int> setB;
+    for (int i=0;i<m;i++) {
+        cin>>a[i];
+        setA.insert(a[i]);
+    }
+    for (int i=0;i<m;i++) {
+        cin>>b[i];
+        setB.insert(b[i]);
+    }
+    int sum=0;
+    for (int i=0;i<m;i++) {
+        if (setB.find(a[i])==setB.end()) sum+=a[i];
+    }
+    for (int i=0;i<m;i++) {
+        if (setA.find(b[i])==setA.end()) sum+=b[i];
+    }
+    cout<<sum;
+    return 0;
+}

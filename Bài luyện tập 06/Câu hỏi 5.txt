@@ -1,0 +1,34 @@
+SinglyLinkedListNode* createNode (int data) {
+    SinglyLinkedListNode* node = new SinglyLinkedListNode(data);
+    return node;
+}
+SinglyLinkedListNode* mergeLists (SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
+    SinglyLinkedListNode* mergeList=createNode(0);
+    SinglyLinkedListNode* tempMerge=mergeList;
+    while (head1!=NULL&&head2!=NULL) {
+        if (head1->data<=head2->data) {
+            SinglyLinkedListNode* node=createNode(head1->data);
+            tempMerge->next=node;
+            tempMerge=tempMerge->next;
+            head1=head1->next;
+        } else {
+            SinglyLinkedListNode* node=createNode(head2->data);
+            tempMerge->next=node;
+            tempMerge=tempMerge->next;
+            head2=head2->next;
+        }
+    }
+    while (head1!=NULL) {
+        SinglyLinkedListNode* node=createNode(head1->data);
+        tempMerge->next=node;
+        tempMerge=tempMerge->next;
+        head1=head1->next;
+    }
+    while (head2!=NULL) {
+        SinglyLinkedListNode* node=createNode(head2->data);
+        tempMerge->next=node;
+        tempMerge=tempMerge->next;
+        head2=head2->next;
+    }
+    return mergeList->next;
+}

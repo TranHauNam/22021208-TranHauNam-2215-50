@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main () {
+    int m,n;
+    cin>>m>>n;
+    int a[m],b[n];
+    set<int> setA;
+    for (int i=0;i<m;i++) {
+        cin>>a[i];
+        setA.insert(a[i]);
+    }
+    for (int i=0;i<n;i++) {
+        cin>>b[i];
+        if (setA.find(b[i])==setA.end()) {
+            cout<<"No";
+            return 0;
+        }
+    }
+    cout<<"Yes";
+    return 0;
+}

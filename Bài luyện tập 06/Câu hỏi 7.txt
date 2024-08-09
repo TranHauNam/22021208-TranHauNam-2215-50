@@ -1,0 +1,62 @@
+
+class Fraction {
+    int a, b;
+public:
+    Fraction(int a = 1, int b = 1) {
+        this->a=a;
+        this->b=b;
+    }
+    int gcd(int a, int b) {
+        if (b==0) return a;
+        return gcd(b,a%b);
+    }
+    friend ostream& operator<<(ostream& os, const Fraction& f) {
+        if (f.b!=0) {
+            os<<f.a<<"/"<<f.b<<endl;
+            return os;
+        } else {
+            os<<"invalid"<<endl;
+            return os;
+        }
+    }
+    Fraction operator+(const Fraction& f) const {
+        Fraction result;
+        result.a=a*f.b+b*f.a;
+        result.b=b*f.b;
+        result.simplify();
+        return result;
+    }
+    Fraction operator-(const Fraction& f) const {
+        Fraction result;
+        result.a=a*f.b-b*f.a;
+        result.b=b*f.b;
+        result.simplify();
+        return result;
+    }
+    Fraction operator*(const Fraction& f) const {
+        Fraction result;
+        result.a=a*f.a;
+        result.b=b*f.b;
+        result.simplify();
+        return result;
+    }
+    Fraction operator/(const Fraction& f) const {
+        Fraction result;
+        result.a=a*f.b;
+        result.b=b*f.a;
+        result.simplify();
+        return result;
+    }
+    void simplify() {
+        int ucln=gcd(a,b);
+        a/=ucln;
+        b/=ucln;
+    }
+    bool operator>(const Fraction& f) const {
+        return a*f.b>b*f.a;
+    }
+    bool operator<(const Fraction& f) const {
+        return a*f.b<b*f.a;
+    }
+};
+

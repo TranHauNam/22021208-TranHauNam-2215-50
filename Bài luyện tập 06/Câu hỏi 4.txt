@@ -1,0 +1,6 @@
+void update(int* a, int* b) {
+    int sum=abs(*a+*b);
+    int diff=abs(*a-*b);
+    *a=sum;
+    *b=diff;
+}
